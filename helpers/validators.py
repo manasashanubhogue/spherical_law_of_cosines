@@ -11,9 +11,15 @@ class Validators:
         required_fields: fields that are mandatory in the input
         """
         has_error = False
+        error_message = ''
         if set(required_fields) != set(input_dict.keys()):
-           has_error = True
-        return has_error
+            has_error = True
+            error_message = 'Missing mandatory fields in the file, please check'
+        # check if any of the field's value is empty
+        if '' in input_dict.values():
+            has_error = True
+            error_message = 'Value is Empty for one/more keys in the input file, please correct'
+        return has_error, error_message
 
     def validate_customer_data(file_path):
         """ validate file and contents """
@@ -25,9 +31,10 @@ class Validators:
                     for line in file:
                         # data validation and then append
                         json_line = json.loads(line)
-                        has_error = Validators.validate_fields(json_line, required_fields)
+                        has_error, error_message = Validators.validate_fields(json_line, required_fields)
                         if has_error:
-                            logging.raiseExceptions("Missing mandatory fields in the file, please check")
+                            logger.error(error_message)
+                            logging.raiseExceptions()
                         all_customers.append(Customer(json_line['user_id'], json_line['name'],
                             (float(json_line['latitude']),float(json_line['longitude'])) ))
             except OSError:
