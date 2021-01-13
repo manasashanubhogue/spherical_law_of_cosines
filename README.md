@@ -10,5 +10,24 @@ Result:
 Requirements:
 ```Python 3x```
 
+Installation:
+Dependencies - ``` pip install requirements.txt ```
+
 Execution:
 ```python main.py ```
+
+File Structure:
+- main.py : Main Function that's invoked
+- helpers -> 
+    utils.py - Utility generic functions
+    validators - Validation functions
+- resources ->
+    constants.py - Constants used across project
+    customer.txt - Input file
+- src ->
+    model.py - Model for customer data
+- tests - pytest
+- output.txt - Output file
+- requirements.txt - Requirements for the project
+- Readme.nd - Readme file
+

@@ -1,5 +1,5 @@
 import os, json, logging
-from src.customer import Customer
+from src.model import Customer
 
 logger = logging.getLogger(__name__)
 
@@ -32,12 +32,27 @@ class Validators:
                         # data validation and then append
                         json_line = json.loads(line)
                         has_error, error_message = Validators.validate_fields(json_line, required_fields)
+                        # check values of lat and long
+                        has_error, error_message = Validators.verify_latitute_longitude(float(json_line['latitude']), float(json_line['longitude']))
                         if has_error:
                             logger.error(error_message)
-                            logging.raiseExceptions()
+                            raise ValueError(error_message)
                         all_customers.append(Customer(json_line['user_id'], json_line['name'],
                             (float(json_line['latitude']),float(json_line['longitude'])) ))
             except OSError:
                 logger.error("Could not open/read file: {}", file_path)
             logger.debug("File parsed successfully")
             return all_customers
+
+    
+    def verify_latitute_longitude(lat, lng):
+        """ Validate values of lat and long """
+        has_error = False
+        error_message = ''
+        if lat > 90 or lat < -90:
+            has_error = True
+            error_message = 'Latitude must have value between -90 to +90'
+        if lng > 180 or lng < -180:
+            has_error = True
+            error_message = 'Longitude must have value between -180 to +180'
+        return has_error, error_message

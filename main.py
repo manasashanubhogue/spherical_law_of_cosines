@@ -1,5 +1,4 @@
 import logging
-from pprint import pprint
 from helpers.validators import Validators
 from resources.constants import (
     CUSTOMERS_DATA_PATH,
@@ -39,8 +38,9 @@ def find_customers_within_distance_range(all_customers, office_location, distanc
             resultant[customer.user_id] = customer.name
     # sort dict based on customer id
     logger.info("Following customers can be invited:\n")
-    logger.info(pprint(resultant, sort_dicts=True))
-    return resultant
+    sorted_result = dict(sorted(resultant.items()))
+    print(sorted_result)
+    return sorted_result
 
 def main():
     fetch_valid_customers()
