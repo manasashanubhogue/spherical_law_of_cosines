@@ -16,8 +16,11 @@ Dependencies - ``` pip install requirements.txt ```
 Execution:
 ```python main.py ```
 
+TestCases execution:
+```pytest```
+
 File Structure:
-- main.py : Main Function that's invoked
+- main.py : Main Function
 - helpers -> 
     utils.py - Utility generic functions
     validators - Validation functions
@@ -26,8 +29,8 @@ File Structure:
     customer.txt - Input file
 - src ->
     model.py - Model for customer data
-- tests - pytest
+- tests - Test cases for the project
 - output.txt - Output file
 - requirements.txt - Requirements for the project
-- Readme.nd - Readme file
+- Readme.md - Readme file
 
