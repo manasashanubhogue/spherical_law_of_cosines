@@ -8,16 +8,24 @@ Result:
 - To Get sorted list of customers who are located within 100km from office using first formula in https://en.wikipedia.org/wiki/Great-circle_distance 
 
 Requirements:
-```Python 3x```
+Python 3x, pip and virtualenv to be installed.
+
+Install virtualenv globally using pip3 with pip3 install virtualenv.
+Create a virtualenv named ".venv" with virtualenv .venv.
+Activate the virtualenv with . .venv/bin/activate.
+Install dependencies with pip3 install -r requirements.txt.
 
 Installation:
-Dependencies - ``` pip install requirements.txt ```
+1. Install virtualenv - ```pip install virutalenv```
+2. Create virtualenv - ``` virtualenv .venv```
+3. Activate - ``` source .venv/Scripts/activate ```
+4. Install dependencies ``` pip install -r requirements.txt ```
 
 Execution:
 ```python main.py ```
 
 TestCases execution:
-```pytest```
+``` pytest ```
 
 File Structure:
 - main.py : Main Function
